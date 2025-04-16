@@ -1,0 +1,135 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Veterinary Prescription
+    link(rel='stylesheet', href='http://localhost:3000/files/prescription02_default.css')
+  body
+    - var firstItem = prescription_items[0]
+
+    header
+      h2 Veterinary Prescription
+      h3 This prescription shall not be re-used
+
+    section
+      h3.section-title Section I
+      p Name and address of the manufacturer or supplier of medicated feeding stuff:
+      .indent
+        p.spaced #{location_data.description}
+        p.spaced #{location_data.address_line1}
+        p.spaced #{location_data.address_line2}
+        p.spaced #{location_data.address_line3}
+        p.spaced #{location_data.address_line4}
+        p.spaced #{location_data.address_line5}
+        p Tel: #{location_data.phone_number}
+      
+    section
+      h3.section-title Section II
+      p
+        | Name and address of the owner or the person in charge of the animals:
+      .indent
+        p.spaced
+          strong Customer Name: 
+          | #{customer_data.customer_first_name} #{customer_data.customer_last_name}
+        p.spaced
+          strong Customer Address: 
+        - var address = (delivery_address_data.address_line1 ? delivery_address_data.address_line1 : customer_address_data.address_line1) +  ", " + (delivery_address_data.address_line2 ? delivery_address_data.address_line2 : customer_address_data.address_line2) +  ", " + (delivery_address_data.address_line3 ? delivery_address_data.address_line3 : customer_address_data.address_line3) +  ", " + (delivery_address_data.address_line4 ? delivery_address_data.address_line4 : customer_address_data.address_line4)
+        p.spaced= address 
+        - var phone = delivery_address_data.phone_no || customer_address_data.phone_number;
+        - var mobile = delivery_address_data.mobile_number || customer_address_data.mobile_number;
+        p.spaced
+          strong Phone: 
+          = phone ? phone + " / " + mobile : mobile
+          strong    Email: 
+          = delivery_address_data.e_mail ? delivery_address_data.e_mail : customer_address_data.e_mail
+          strong    Herd Id: 
+          = delivery_address_data.herd_id ? delivery_address_data.herd_id : customer_data.herd_id
+        if prescription_data.nvps_id
+          p.spaced
+            strong Prescription Id:
+            | #{prescription_data.nvps_id}
+        p.spaced 
+          strong Species: #{prescription_data.species} 
+          strong Subspecies: #{prescription_data.sub_species} 
+          strong Animal Class: #{prescription_data.animal_class}
+        p.spaced 
+          strong Age: #{prescription_items.age} #{prescription_items.age_unit} 
+          strong No. of Animals: #{firstItem.no_of_animals}
+    br
+    p 
+      | Please manufacture and supply to the above #{firstItem.quantity} #{firstItem.quantity_unit} of:
+      | Feed and additive / medicine product code and description added here
+      section
+      table
+        tbody
+          each item in prescription_items
+            each ingredient in item.additive_ingredients
+              tr
+                td= ingredient.quantity + " kg/tonne"
+                td= ingredient.product_description
+                td= ingredient.vpa_code
+    p 
+      | to give:
+      section
+      table
+        tbody
+          each item in prescription_items
+            each ingredient in item.additive_ingredients
+              if ingredient.vpa_code != null
+                tr
+                  td= ingredient.strength + " " + ingredient.measurement
+                  td= ingredient.substance_name
+    
+    section
+      p
+        | In the final feeding stuff for administration to the animals above which are under my care.
+      p
+        | Special instructions for the owner or person in charge of the animals to which direction applies.
+      p.spaced
+        | 1.- Disease to be treated: #{firstItem.diagnosis}
+      p.spaced
+        | 2.- Quantity of the medication feed to be given: as rationed
+      p.spaced
+        | 3.- Duration of treatement: 
+      p.spaced
+        | 4.- Withdrawal period: Animals must not be slaughtered for human consumption for #{firstItem.withdrawal_period_meat} days after the last administration of the medical feed.
+      p.spaced
+        | 5.- Special precautions: ....................
+      p.spaced
+        | 6.- Effective date: #{prescription_data.prescription_date} to: #{prescription_data.expiry_date}
+      p.spaced
+        | 7.- Ensure prudent use of antibiotics 
+
+    section.signature-block
+      p
+        | Signature of Vet/Surgeon: __________________________________
+      br
+      .indent
+        p.spaced
+          | Name: #{vet_data.name}
+        p.spaced
+          | Veterinary Surgeon
+        p.spaced #{vet_data.address1}
+        p.spaced #{vet_data.address2}
+        p.spaced #{vet_data.address3}
+        p.spaced #{vet_data.address4}
+        p.spaced
+          | Tel: #{vet_data.phone_number}
+        p.spaced
+          | Email: #{vet_data.e_mail}
+
+    section
+        h3.section-title Section III (To be completed by manufacturer / seller)
+        p
+          | Date(s) of Delivery: ....................
+        p
+          | To be used before .................... days post manufacture 
+        p
+          | Signature of manufacturer / seller: ....................
+
+    section
+        h3.section-title Section IV (To be completed by veterinary surgeon if applicable)
+        p
+          | * Unauthorised medicated premix 
+        p 
+          | Reason for directing the incorporation by a manufacturer of an unauthorised medicated premix - no licensed alternative

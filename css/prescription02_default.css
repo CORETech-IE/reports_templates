@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin: 30px;
+    color: #000;
+}
+
+header,
+footer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.section-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.info-block {
+    margin: 10px 0;
+}
+
+.signature-block {
+    margin-top: 40px;
+}
+
+.signature-line {
+    display: inline-block;
+    width: 200px;
+    border-bottom: 1px solid #000;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.table-container {
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 20px 0;
+}
+
+table th,
+table td {
+    border: 1px solid #000;
+    padding: 5px;
+    vertical-align: top;
+}
+
+.indent {
+    margin-left: 20px;
+}
+
+.spaced {
+    margin-bottom: 0px;
+    line-height: 1.5;
+}
+
+.no-borders,
+.no-borders th,
+.no-borders td {
+    border: none;
+}
+
+.indent {
+    margin-left: 20px;
+    /* Ajusta el valor según lo que necesites */
+}

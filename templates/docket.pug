@@ -1,0 +1,161 @@
+doctype html
+html
+  head
+    link(rel="stylesheet", href="http://localhost:3000/files/style.css")
+    style.
+      /* Aseguramos que html y body ocupen el 100% de la altura */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      /* Usamos flex para estructurar el body */
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      /* Contenedor principal que se expande */
+      .content-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      /* Contenedor para la tabla de productos que ocupa el espacio disponible */
+      .products-table-container {
+        flex: 1;
+        overflow-y: auto; /* Permite scroll si la tabla es muy alta */
+      }
+  body
+    img(src="http://localhost:3000/files/top_banner.jpg" style="max-width: 100%;")
+    
+    .clearfix
+      .top-info
+        .top-info-left
+          span Sold by: #{sold_by}
+          span Driver: #{rep}
+        .top-info-right
+          span.trans-type #{transaction_description}
+          span Deliver to:
+    
+    .container
+      .box-container.large-container
+        p.box
+          span #{customer_data.customer_name}
+          br
+          span #{customer_data.address}
+          br
+          span #{location_data.location_add_line1}
+          br
+          span #{location_data.location_add_line2}
+          br
+          span #{location_data.location_add_line3}
+          br
+          span #{location_data.location_add_line4}
+      .box-container.large-container
+        p.box
+          span #{customer_data.customer_name}
+          br
+          span #{customer_data.address}
+          br
+          span #{location_data.location_add_line1}
+          br
+          span #{location_data.location_add_line2}
+          br
+          span #{location_data.location_add_line3}
+          br
+          span #{location_data.location_add_line4}
+      .box-container
+        .branch-heading
+          div Branch
+        p.branch-box
+          span #{location_data.location_description}
+          br
+          span #{location_data.location_add_line1}
+          br
+          span #{location_data.location_add_line2}
+          br
+          span #{location_data.location_add_line3}
+          br
+          span #{location_data.location_add_line4}
+          br
+          span #{location_data.location_phone}
+        div Input: #{input_date}
+    
+    table.zui-table
+      thead
+        tr
+          th Delivery Method
+          th Customer Order Number
+          th Account Number
+          th Reference
+          th Our Reference
+          th Docket Date
+          th Docket Number
+      tbody
+        tr
+          td Deliver
+          td
+          td #{customer_data.customer_code}
+          td
+          td 112100043822
+          td= input_date
+          td= docket_number
+    
+    br
+    
+    // Contenedor principal para la sección central: tabla de productos y totales
+    .content-wrapper
+      // Contenedor de la tabla de productos que se expande verticalmente
+      .products-table-container
+        table.zui-table
+          thead
+            tr
+              th PRODUCT
+              th DESCRIPTION
+              th QUANTITY
+              th PRICE
+              th VALUE
+          tbody
+            each item in products
+              tr
+                td= item.product_code
+                td= item.product_description
+                td= item.product_quantity
+                td= item.product_price
+                td= item.product_value
+      br
+      // Sección de totales y otras imágenes, que quedarán en la parte inferior
+      div.totals
+        table.vat-analysis
+          thead
+            tr
+              th(colspan="4") VAT Analysis
+            tr
+              th CODE
+              th RATE
+              th VAT VALUE
+              th NETT VALUE
+          tbody
+            each item in vat_analysis
+              tr
+                td= item.vat_code
+                td= item.vat_rate
+                td= item.vat_value
+                td= item.vat_docket_value
+        table
+          tr
+            td
+              img(src="http://localhost:3000/files/new_code1.png" style="max-width: 140px")
+            td
+              img(src="http://localhost:3000/files/qr_code.png")
+            td
+              table.totals-table
+                tr
+                  th TOTAL NETT VALUE
+                  td= transaction_totals.transaction_total_net
+                tr
+                  th V.A.T.
+                  td= transaction_totals.transaction_total_vat
+                tr
+                  th TOTAL VALUE
+                  td= transaction_totals.transaction_total_val

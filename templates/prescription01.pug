@@ -1,0 +1,122 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Veterinary Prescription
+    link(rel='stylesheet', href='http://localhost:3000/files/prescription01_default.css')
+  body
+    header
+      h2 #{vet_data.name}
+      p Veterinary Surgeon
+      p #{location_data.description}, #{location_data.address_line1}, #{location_data.address_line2}, #{location_data.address_line3}, #{location_data.address_line4}, #{location_data.address_line5}
+      p Tel: #{location_data.phone_number}
+    hr
+  // Main section with permit/prescription data
+  section
+    table.heading-table
+      tbody
+        tr
+          td
+            .info-block
+              p.spaced
+                strong Customer Name: 
+                | #{customer_data.customer_first_name} #{customer_data.customer_last_name}
+              p.spaced
+                strong Customer Address: 
+              p.spaced= delivery_address_data.address_line1 ? delivery_address_data.address_line1 : customer_address_data.address_line1
+              p.spaced= delivery_address_data.address_line2 ? delivery_address_data.address_line2 : customer_address_data.address_line2
+              p.spaced= delivery_address_data.address_line3 ? delivery_address_data.address_line3 : customer_address_data.address_line3
+              p.spaced= delivery_address_data.address_line4 ? delivery_address_data.address_line4 : customer_address_data.address_line4
+              p.spaced
+                strong Herd Id: 
+                = delivery_address_data.herd_id ? delivery_address_data.herd_id : customer_data.herd_id
+          td
+            .info-block
+              p.spaced 
+                strong Prescription start date: 
+                | #{prescription_data.prescription_date}
+              p.spaced 
+                strong Prescription valid until: 
+                | #{prescription_data.expiry_date}
+              p.spaced 
+                strong Species: 
+                | #{prescription_data.species}
+              p.spaced 
+                strong Subspecies: 
+                | #{prescription_data.subspecies}
+              p.spaced 
+                strong Animal Class: 
+                | #{prescription_data.animal_class}
+      
+    // Product Information Section
+  hr
+  section
+    h3.section-title Product Information
+    table
+      thead
+        tr
+          th Product Code
+          th Product Description
+          th.min-vpa VPA Code
+          th Quantity 
+          th Unit
+          th Dosage Regime
+          th WD Meat
+          th Manner 
+          th Duration
+      tbody
+        each item in prescription_items
+          tr
+            td= item.product_code
+            td= item.product_description
+            td= item.vpa_code
+            td= item.quantity
+            td= item.quantity_unit
+            td= item.regime
+            td= item.withdrawal_period_meat
+            td= item.route_of_admin
+            td= item.treatment_duration
+
+  // Withdrawal Information Section
+  section
+    h3.section-title Withdrawal Information
+    table
+      thead
+        tr
+          th Product Code
+          th Anti Microbial
+          th According with Article
+          th Cultural Sensitivity
+          th Withdrawal (Dairy)
+          th Withdrawal (Eggs)
+          th Withdrawal Notes
+      tbody
+        each item in prescription_items
+          tr
+            td= item.product_code
+            td= item.anti_microbial
+            td= item.according_with_article
+            td= item.cultural_sensitivity
+            td= item.withdrawal_period_dairy
+            td= item.withdrawal_period_eggs
+            td= item.withdrawal_notes
+
+    section 
+      p.spaced Special instructions, precautions, risks #[strong(style="text-decoration: underline") please refer to product label/packaging]
+      p.spaced * Withdrawal Period. Animals must not be slaughtered for human consumption until after the withdrawal period has expired.
+      p.spaced I declare that this prescription is granted in respect of animals "under my care" in accordance with the provisions Animal Remedies Regulations 2007
+
+    br
+    br
+    br
+    section.signature-row
+      // Bloque Izquierdo (Signed)
+      .signature-item
+        span.label Signed:
+        span.signature-line
+
+      // Bloque Derecho (Date)
+      .signature-item
+        span.label Date:
+        span.signature-line
+          span.date-value= new Date().toLocaleDateString()

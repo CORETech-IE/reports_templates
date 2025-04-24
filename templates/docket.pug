@@ -142,12 +142,9 @@ html
                 td= item.vat_rate
                 td= item.vat_value
                 td= item.vat_docket_value
+        img(src=`http://localhost:3000/img/barcode_${core_report_info.barcode}.png` style='max-width: 180px')
         table
           tr
-            td
-              img(src="http://localhost:3000/files/new_code1.png" style="max-width: 140px")
-            td
-              img(src="http://localhost:3000/files/qr_code.png")
             td
               table.totals-table
                 tr
@@ -159,3 +156,5 @@ html
                 tr
                   th TOTAL VALUE
                   td= transaction_totals.transaction_total_val
+        
+        

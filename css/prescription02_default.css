@@ -84,3 +84,26 @@ table td {
     margin-left: 20px;
     /* Ajusta el valor según lo que necesites */
 }
+
+.signature-line {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    height: 30px;
+    transform: translateX(60%) translateY(-100%);
+    border-bottom: 1px solid #000;
+    margin-bottom: 2px;
+    background: #fff;
+}
+
+.signature-line .signature-image {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-30%) translateY(-70%);
+    background: #fff;
+    padding: 2px;
+}
+
+.signature-line .signature-image img {
+    max-height: 80px;
+}

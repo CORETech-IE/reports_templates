@@ -122,15 +122,27 @@ table td {
     position: relative;
     display: inline-block;
     width: 250px;
+    height: 30px;
     border-bottom: 1px solid #000;
-    text-align: center;
     margin-bottom: 2px;
+    background: #fff;
 }
 
-/* Texto que se coloca encima de la línea, centrado horizontalmente */
+.signature-line .signature-image {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-70%);
+    background: #fff;
+    padding: 2px;
+}
+
+.signature-line .signature-image img {
+    max-height: 90px;
+}
+
 .signature-line .date-value {
     position: absolute;
-    bottom: 100%;
+    bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
     background: #fff;

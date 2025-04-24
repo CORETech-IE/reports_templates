@@ -99,10 +99,14 @@ html
         | 6.- Effective date: #{prescription_data.prescription_date} to: #{prescription_data.expiry_date}
       p.spaced
         | 7.- Ensure prudent use of antibiotics 
-
+    br
     section.signature-block
       p
-        | Signature of Vet/Surgeon: __________________________________
+        | Signature of Vet/Surgeon: 
+      span.signature-line
+        div.signature-image
+          if prescription_data.status == '0'
+            img(src=`http://localhost:3000/img/${vet_data.vet_code}.jpg`, alt='Vet Signature')
       br
       .indent
         p.spaced

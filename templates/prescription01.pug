@@ -3,7 +3,7 @@ html
   head
     meta(charset='utf-8')
     title Veterinary Prescription
-    link(rel='stylesheet', href='http://localhost:3000/files/prescription01_default.css')
+    link(rel='stylesheet' href='http://localhost:3000/files/prescription01_default.css')
   body
     header
       h2 #{vet_data.name}
@@ -47,7 +47,7 @@ html
               p.spaced 
                 strong Animal Class: 
                 | #{prescription_data.animal_class}
-      
+
     // Product Information Section
   hr
   section
@@ -114,6 +114,9 @@ html
       .signature-item
         span.label Signed:
         span.signature-line
+          div.signature-image
+            if prescription_data.status == '0'
+              img(src=`http://localhost:3000/img/${vet_data.vet_code}.jpg`, alt='Vet Signature')
 
       // Bloque Derecho (Date)
       .signature-item

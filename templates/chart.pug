@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Gráfico de Datos
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        text-align: center;
+      }
+      img.chart {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ccc;
+        margin-top: 30px;
+      }
+  body
+    h1 Informe de Ventas
+    p A continuación se muestra un resumen gráfico de los datos.
+
+    if chartImageUrl
+      img.chart(src=chartImageUrl alt="Gráfico de barras")
+    else
+      p(style="color:red") ⚠ No se ha proporcionado ninguna imagen.

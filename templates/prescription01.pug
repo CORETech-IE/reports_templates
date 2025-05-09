@@ -101,6 +101,23 @@ html
             td= item.withdrawal_period_eggs
             td= item.withdrawal_notes
 
+  // Batches Depleted Information
+  if batches_depleted && batches_depleted.length > 0
+    section
+      h3.section-title To be completed when administered or dispensed
+      table.batches-table
+        thead
+          tr
+            th Batch 
+            th Expiry Date
+            th Quantity
+        tbody
+          each item in batches_depleted
+            tr
+              td= item.batch_number
+              td= item.expiry_date
+              td= item.quantity
+
     section 
       p.spaced Special instructions, precautions, risks #[strong(style="text-decoration: underline") please refer to product label/packaging]
       p.spaced * Withdrawal Period. Animals must not be slaughtered for human consumption until after the withdrawal period has expired.

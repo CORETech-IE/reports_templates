@@ -47,13 +47,14 @@ html
         if prescription_data.nvps_id
           p.spaced
             strong Prescription Id:
-            | #{prescription_data.nvps_id}
+            |  #{prescription_data.prescription_id} / #{prescription_data.nvps_id}
         p.spaced 
           strong Species: #{prescription_data.species} 
           strong Subspecies: #{prescription_data.sub_species} 
           strong Animal Class: #{prescription_data.animal_class}
         p.spaced 
-          strong Age: #{prescription_items.age} #{prescription_items.age_unit} 
+          if prescription_items.age != null
+            strong Age: #{prescription_items.age} #{prescription_items.age_unit} 
           strong No. of Animals: #{firstItem.no_of_animals}
     br
     p 

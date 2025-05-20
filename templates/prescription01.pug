@@ -32,6 +32,9 @@ html
                 = delivery_address_data.herd_id ? delivery_address_data.herd_id : customer_data.herd_id
           td
             .info-block
+              p.spaced
+                strong Prescription Id: 
+                | #{prescription_data.prescription_id} / #{prescription_data.nvps_id}
               p.spaced 
                 strong Prescription start date: 
                 | #{prescription_data.prescription_date}
@@ -39,11 +42,8 @@ html
                 strong Prescription valid until: 
                 | #{prescription_data.expiry_date}
               p.spaced 
-                strong Species: 
-                | #{prescription_data.species}
-              p.spaced 
-                strong Subspecies: 
-                | #{prescription_data.subspecies}
+                strong Species / Subspecies: 
+                | #{prescription_data.species} / #{prescription_data.subspecies}
               p.spaced 
                 strong Animal Class: 
                 | #{prescription_data.animal_class}

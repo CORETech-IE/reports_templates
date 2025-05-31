@@ -3,7 +3,8 @@ html
   head
     meta(charset='utf-8')
     title Veterinary Prescription
-    link(rel='stylesheet' href='http://localhost:3000/files/prescription01_default.css')
+    != embeddedCSS
+
   body
     header
       h2 #{vet_data.name}
@@ -127,15 +128,15 @@ html
     br
     br
     section.signature-row
-      // Bloque Izquierdo (Signed)
+      // Left block (Signed)
       .signature-item
         span.label Signed:
         span.signature-line
           div.signature-image
-            if prescription_data.status == '0'
+            if ['0', '3'].includes(prescription_data.status)
               img(src=`http://localhost:3000/img/${vet_data.vet_code}.jpg`, alt='Vet Signature')
 
-      // Bloque Derecho (Date)
+      // Right Block (Date)
       .signature-item
         span.label Date:
         span.signature-line

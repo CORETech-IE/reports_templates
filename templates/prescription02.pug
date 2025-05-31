@@ -3,7 +3,7 @@ html
   head
     meta(charset='utf-8')
     title Veterinary Prescription
-    link(rel='stylesheet', href='http://localhost:3000/files/prescription02_default.css')
+    != embeddedCSS
   body
     - var firstItem = prescription_items[0]
 
@@ -91,7 +91,7 @@ html
       p.spaced
         | 2.- Quantity of the medication feed to be given: as rationed
       p.spaced
-        | 3.- Duration of treatement: 
+        | 3.- Duration of treatment: #{firstItem.treatment_duration}
       p.spaced
         | 4.- Withdrawal period: Animals must not be slaughtered for human consumption for #{firstItem.withdrawal_period_meat} days after the last administration of the medical feed.
       p.spaced
@@ -106,7 +106,7 @@ html
         | Signature of Vet/Surgeon: 
       span.signature-line
         div.signature-image
-          if prescription_data.status == '0'
+          if ['0', '3'].includes(prescription_data.status)
             img(src=`http://localhost:3000/img/${vet_data.vet_code}.jpg`, alt='Vet Signature')
       br
       .indent

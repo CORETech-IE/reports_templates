@@ -44,10 +44,9 @@ html
           = delivery_address_data.e_mail ? delivery_address_data.e_mail : customer_address_data.e_mail
           strong    Herd Id: 
           = delivery_address_data.herd_id ? delivery_address_data.herd_id : customer_data.herd_id
-        if prescription_data.nvps_id
-          p.spaced
-            strong Prescription Id:
-            |  #{prescription_data.prescription_id} / #{prescription_data.nvps_id}
+        p.spaced
+          strong Prescription Id:
+          |  #{prescription_data.prescription_id} / #{prescription_data.nvps_id}
         p.spaced 
           strong Species: #{prescription_data.species} 
           strong Subspecies: #{prescription_data.sub_species} 

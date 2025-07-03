@@ -1,6 +1,6 @@
 ^XA
-^PW800       ; 100 mm × 8 dots/mm
-^LL400       ; 50 mm × 8 dots/mm
+^PW800
+^LL400
 
 ^FX Header of the Label
 ^CF0,30

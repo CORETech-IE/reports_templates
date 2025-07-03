@@ -64,7 +64,6 @@ html
           th Dosage Regime
           th WD Meat
           th Manner 
-          th Duration
       tbody
         each item in prescription_items
           tr
@@ -76,7 +75,6 @@ html
             td= item.regime
             td= item.withdrawal_period_meat
             td= item.route_of_admin
-            td= item.treatment_duration
 
   // Withdrawal Information Section
   section
@@ -110,12 +108,14 @@ html
         thead
           tr
             th Batch 
+            th Product Code
             th Expiry Date
             th Quantity
         tbody
           each item in batches_depleted
             tr
               td= item.batch_number
+              td= item.product_code
               td= item.expiry_date
               td= item.quantity
 

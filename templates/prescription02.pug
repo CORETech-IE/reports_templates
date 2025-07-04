@@ -106,7 +106,7 @@ html
       span.signature-line
         div.signature-image
           if ['0', '3'].includes(prescription_data.status)
-            img(src=`http://localhost:3000/img/${vet_data.vet_code}.jpg`, alt='Vet Signature')
+            img(src=`data:image/jpeg;base64,${getImageBase64(vet_data.vet_code)}`, alt='Vet Signature')
       br
       .indent
         p.spaced
